@@ -11,6 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBE0C6CC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Nancy", "HealthCheck.Nancy\HealthCheck.Nancy.csproj", "{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Windows", "HealthCheck.Windows\HealthCheck.Windows.csproj", "{5A6CF0A0-AFBC-460D-BA51-D5898175983B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD23FB63-8010-40AC-B752-D7BD3BBD8D8F}"
+	ProjectSection(SolutionItems) = preProject
+		HealthCheck.Core\HealthCheck.Core.nuspec = HealthCheck.Core\HealthCheck.Core.nuspec
+		HealthCheck.Nancy\HealthCheck.Nancy.nuspec = HealthCheck.Nancy\HealthCheck.Nancy.nuspec
+		HealthCheck.Redis\HealthCheck.Redis.nuspec = HealthCheck.Redis\HealthCheck.Redis.nuspec
+		HealthCheck.Windows\HealthCheck.Windows.nuspec = HealthCheck.Windows\HealthCheck.Windows.nuspec
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +40,10 @@ Global
 		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A6CF0A0-AFBC-460D-BA51-D5898175983B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A6CF0A0-AFBC-460D-BA51-D5898175983B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A6CF0A0-AFBC-460D-BA51-D5898175983B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A6CF0A0-AFBC-460D-BA51-D5898175983B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

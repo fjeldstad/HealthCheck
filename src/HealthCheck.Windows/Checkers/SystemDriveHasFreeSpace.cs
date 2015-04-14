@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
-using HealthCheck.Core.Metrics;
+using HealthCheck.Core;
+using HealthCheck.Windows.Metrics;
 
-namespace HealthCheck.Core.Checkers
+namespace HealthCheck.Windows.Checkers
 {
     public class SystemDriveHasFreeSpace : CheckerBase
     {

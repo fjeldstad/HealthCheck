@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}</ProjectGuid>
+    <ProjectGuid>{5A6CF0A0-AFBC-460D-BA51-D5898175983B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HealthCheck.Nancy</RootNamespace>
-    <AssemblyName>HealthCheck.Nancy</AssemblyName>
+    <RootNamespace>HealthCheck.Windows</RootNamespace>
+    <AssemblyName>HealthCheck.Windows</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -40,11 +37,11 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="HealthCheckModule.cs" />
+    <Compile Include="Checkers\CpuUsageIsOk.cs" />
+    <Compile Include="Checkers\SystemDriveHasFreeSpace.cs" />
+    <Compile Include="Metrics\AvailableSystemDriveSpace.cs" />
+    <Compile Include="Metrics\CpuUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthCheck.Core\HealthCheck.Core.csproj">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace HealthCheck.Core.Checkers
+namespace HealthCheck.Core
 {
     public abstract class CheckerBase : IChecker
     {

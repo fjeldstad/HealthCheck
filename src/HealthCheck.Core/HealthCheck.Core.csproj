@@ -32,22 +32,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Checkers\CheckerBase.cs" />
-    <Compile Include="Checkers\CpuUsageIsOk.cs" />
-    <Compile Include="Checkers\SystemDriveHasFreeSpace.cs" />
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CheckerBase.cs" />
     <Compile Include="CheckResult.cs" />
     <Compile Include="HealthCheckResult.cs" />
     <Compile Include="IChecker.cs" />
     <Compile Include="IMetric.cs" />
-    <Compile Include="Metrics\AvailableSystemDriveSpace.cs" />
-    <Compile Include="Metrics\CpuUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

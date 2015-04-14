@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using HealthCheck.Core;
-using HealthCheck.Core.Checkers;
 using HealthCheck.Redis.Metrics;
-using StackExchange.Redis;
 
 namespace HealthCheck.Redis.Checkers
 {

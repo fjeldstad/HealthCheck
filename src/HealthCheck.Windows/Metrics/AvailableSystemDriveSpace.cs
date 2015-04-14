@@ -2,8 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthCheck.Core;
 
-namespace HealthCheck.Core.Metrics
+namespace HealthCheck.Windows.Metrics
 {
     public interface IAvailableSystemDriveSpace : IMetric<long>
     {

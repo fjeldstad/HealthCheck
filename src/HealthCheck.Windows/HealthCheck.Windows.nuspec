@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Hihaj.HealthCheck.Nancy</id>
+    <id>Hihaj.HealthCheck.Windows</id>
     <version>$version$</version>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -13,7 +13,6 @@
     <copyright>Anders Fjeldstad 2015</copyright>
     <tags>service nancy health check healthcheck monitoring</tags>
     <dependencies>
-      <dependency id="Nancy" version="1.1" />
       <dependency id="Hihaj.HealthCheck" version="$version$" />
     </dependencies>
   </metadata>

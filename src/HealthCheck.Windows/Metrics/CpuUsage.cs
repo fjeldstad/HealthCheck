@@ -2,8 +2,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Timers;
+using HealthCheck.Core;
 
-namespace HealthCheck.Core.Metrics
+namespace HealthCheck.Windows.Metrics
 {
     public interface ICpuUsage : IMetric<float>
     {
