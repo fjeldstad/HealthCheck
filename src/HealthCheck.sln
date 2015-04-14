@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Core", "HealthCheck.Core\HealthCheck.Core.csproj", "{7052554B-0005-47E4-B3C3-318D41261E72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Redis", "HealthCheck.Redis\HealthCheck.Redis.csproj", "{677553A9-E456-4C94-9777-F8E2030EEE83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBE0C6CC-E4DF-4657-B291-570F25B042E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Nancy", "HealthCheck.Nancy\HealthCheck.Nancy.csproj", "{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7052554B-0005-47E4-B3C3-318D41261E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7052554B-0005-47E4-B3C3-318D41261E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7052554B-0005-47E4-B3C3-318D41261E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7052554B-0005-47E4-B3C3-318D41261E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{677553A9-E456-4C94-9777-F8E2030EEE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677553A9-E456-4C94-9777-F8E2030EEE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677553A9-E456-4C94-9777-F8E2030EEE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677553A9-E456-4C94-9777-F8E2030EEE83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{971A62B5-6E57-408C-9D2B-A2EA1F9BADFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
