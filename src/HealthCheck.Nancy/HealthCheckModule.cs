@@ -13,25 +13,41 @@ namespace HealthCheck.Nancy
     {
         public const string DefaultRoute = "/healthcheck";
 
-        public HealthCheckModule(
-            IEnumerable<IChecker> checkers, 
-            string route = DefaultRoute, 
-            bool requireHttps = true,
-            Func<NancyContext, Task<bool>> authorized = null)
+        public HealthCheckModule(IEnumerable<IChecker> checkers, HealthCheckOptions options = null)
         {
-            if (requireHttps)
+            if (options == null)
             {
-                this.RequiresHttps();
+                options = new HealthCheckOptions();
+            }
+            if (options.RequireHttps)
+            {
+                this.RequiresHttps(redirect: true, httpsPort: options.HttpsPort);
             }
 
-            Get[route, true] = async (_, ct) =>
+            Get[options.Route, true] = async (_, ct) =>
             {
-                if (authorized != null && !await authorized(Context))
+                if (options.AuthorizationCallback != null && !await options.AuthorizationCallback(Context))
                 {
                     return HttpStatusCode.Unauthorized;
                 }
                 return Response.AsJson(await (new Core.HealthCheck(checkers).Run()));
             };
+        }
+    }
+
+    public class HealthCheckOptions
+    {
+        public string Route { get; set; }
+        public bool RequireHttps { get; set; }
+        public int HttpsPort { get; set; }
+        public Func<NancyContext, Task<bool>> AuthorizationCallback { get; set; }
+
+        public HealthCheckOptions()
+        {
+            Route = "/healthcheck";
+            RequireHttps = true;
+            HttpsPort = 443;
+            AuthorizationCallback = null;
         }
     }
 }

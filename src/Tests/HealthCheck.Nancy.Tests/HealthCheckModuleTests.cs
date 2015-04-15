@@ -19,8 +19,11 @@ namespace HealthCheck.Nancy.Tests
         public void UsesTheDesiredRoute()
         {
             // Arrange
-            var route = "/my/custom/healthcheck";
-            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), route: route);
+            var options = new HealthCheckOptions
+            {
+                Route = "/my/custom/healthcheck"
+            };
+            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), options);
             var bootstrapper = new ConfigurableBootstrapper(with =>
             {
                 with.Module(module);
@@ -28,7 +31,7 @@ namespace HealthCheck.Nancy.Tests
             var browser = new Browser(bootstrapper);
 
             // Act
-            var response = browser.Get(route, with =>
+            var response = browser.Get(options.Route, with =>
             {
                 with.HttpsRequest();
             });
@@ -41,7 +44,11 @@ namespace HealthCheck.Nancy.Tests
         public void CanRequireHttps()
         {
             // Arrange
-            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), requireHttps: true);
+            var options = new HealthCheckOptions
+            {
+                RequireHttps = true
+            };
+            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), options);
             var bootstrapper = new ConfigurableBootstrapper(with =>
             {
                 with.Module(module);
@@ -55,14 +62,18 @@ namespace HealthCheck.Nancy.Tests
             });
 
             // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.SeeOther));
+            Assert.That(((int)response.StatusCode).ToString().StartsWith("3"));
         }
 
         [Test]
         public void DoesNotHaveToRequireHttps()
         {
             // Arrange
-            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), requireHttps: false);
+            var options = new HealthCheckOptions
+            {
+                RequireHttps = false
+            };
+            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), options);
             var bootstrapper = new ConfigurableBootstrapper(with =>
             {
                 with.Module(module);
@@ -104,7 +115,11 @@ namespace HealthCheck.Nancy.Tests
         public void BlocksUnauthorizedRequests()
         {
             // Arrange
-            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), authorized: context => Task.FromResult(false));
+            var options = new HealthCheckOptions
+            {
+                AuthorizationCallback = context => Task.FromResult(false)
+            };
+            var module = new HealthCheckModule(Enumerable.Empty<IChecker>(), options);
             var bootstrapper = new ConfigurableBootstrapper(with =>
             {
                 with.Module(module);
