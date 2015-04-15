@@ -14,16 +14,24 @@ namespace HealthCheck.Redis.Tests.Checkers
     public class RedisHasFreeMemoryTests
     {
         [Test]
-        public async Task CheckPassesWhenMemoryUsageIsBelowThreshold()
+        public async Task CheckPassesWhenFreeMemoryIsAboveThreshold()
         {
             // Arrange
             var options = new RedisHasFreeMemory.Options
             {
-                RedisMemoryUsageWarningThresholdInBytes = 1024
+                RedisFreeMemoryWarningThresholdInBytes = 1024
             };
+            long maxMemory = options.RedisFreeMemoryWarningThresholdInBytes * 10;
+            long usedMemory = maxMemory - options.RedisFreeMemoryWarningThresholdInBytes - 1;
             var redisMemoryUsageMock = new Mock<IRedisMemoryUsage>();
-            redisMemoryUsageMock.Setup(x => x.Read()).ReturnsAsync(options.RedisMemoryUsageWarningThresholdInBytes - 1);
-            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, options);
+            redisMemoryUsageMock
+                .Setup(x => x.Read())
+                .ReturnsAsync(usedMemory);
+            var redisMaxMemoryMock = new Mock<IRedisMaxMemory>();
+            redisMaxMemoryMock
+                .Setup(x => x.Read())
+                .ReturnsAsync(maxMemory);
+            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, redisMaxMemoryMock.Object, options);
 
             // Act
             var result = await check.Check();
@@ -33,16 +41,24 @@ namespace HealthCheck.Redis.Tests.Checkers
         }
 
         [Test]
-        public async Task CheckFailsWhenMemoryUsageIsAboveThreshold()
+        public async Task CheckFailsWhenFreeMemoryIsBelowThreshold()
         {
             // Arrange
             var options = new RedisHasFreeMemory.Options
             {
-                RedisMemoryUsageWarningThresholdInBytes = 1024
+                RedisFreeMemoryWarningThresholdInBytes = 1024
             };
+            long maxMemory = options.RedisFreeMemoryWarningThresholdInBytes * 10;
+            long usedMemory = maxMemory - options.RedisFreeMemoryWarningThresholdInBytes + 1;
             var redisMemoryUsageMock = new Mock<IRedisMemoryUsage>();
-            redisMemoryUsageMock.Setup(x => x.Read()).ReturnsAsync(options.RedisMemoryUsageWarningThresholdInBytes + 1);
-            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, options);
+            redisMemoryUsageMock
+                .Setup(x => x.Read())
+                .ReturnsAsync(usedMemory);
+            var redisMaxMemoryMock = new Mock<IRedisMaxMemory>();
+            redisMaxMemoryMock
+                .Setup(x => x.Read())
+                .ReturnsAsync(maxMemory);
+            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, redisMaxMemoryMock.Object, options);
 
             // Act
             var result = await check.Check();
@@ -58,7 +74,8 @@ namespace HealthCheck.Redis.Tests.Checkers
             var redisMemoryUsageMock = new Mock<IRedisMemoryUsage>();
             var exception = new Exception("error message");
             redisMemoryUsageMock.Setup(x => x.Read()).ThrowsAsync(exception);
-            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, new RedisHasFreeMemory.Options());
+            var redisMaxMemoryMock = new Mock<IRedisMaxMemory>();
+            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, redisMaxMemoryMock.Object, new RedisHasFreeMemory.Options());
 
             // Act
             var result = await check.Check();
@@ -66,6 +83,41 @@ namespace HealthCheck.Redis.Tests.Checkers
             // Assert
             Assert.That(result.Passed, Is.False);
             Assert.That(result.Output, Is.EqualTo(exception.Message));
+        }
+
+        [Test]
+        public async Task CheckFailsWhenRedisMaxMemoryThrows()
+        {
+            // Arrange
+            var redisMemoryUsageMock = new Mock<IRedisMemoryUsage>();
+            var exception = new Exception("error message");
+            var redisMaxMemoryMock = new Mock<IRedisMaxMemory>();
+            redisMaxMemoryMock.Setup(x => x.Read()).ThrowsAsync(exception);
+            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, redisMaxMemoryMock.Object, new RedisHasFreeMemory.Options());
+
+            // Act
+            var result = await check.Check();
+
+            // Assert
+            Assert.That(result.Passed, Is.False);
+            Assert.That(result.Output, Is.EqualTo(exception.Message));
+        }
+
+        [Test]
+        public async Task CheckPassesWhenThereIsNoUpperLimitOnMemoryUsage()
+        {
+            // Arrange
+            var redisMaxMemoryMock = new Mock<IRedisMaxMemory>();
+            redisMaxMemoryMock.Setup(x => x.Read()).ReturnsAsync(null);
+            var redisMemoryUsageMock = new Mock<IRedisMemoryUsage>();
+            redisMemoryUsageMock.Setup(x => x.Read()).ReturnsAsync(1024);
+            var check = new RedisHasFreeMemory(redisMemoryUsageMock.Object, redisMaxMemoryMock.Object, new RedisHasFreeMemory.Options());
+
+            // Act
+            var result = await check.Check();
+
+            // Assert
+            Assert.That(result.Passed, Is.True);
         }
     }
 }

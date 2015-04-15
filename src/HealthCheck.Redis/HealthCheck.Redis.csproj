@@ -42,6 +42,7 @@
     </Compile>
     <Compile Include="Checkers\RedisHasFreeMemory.cs" />
     <Compile Include="Checkers\RedisIsAvailable.cs" />
+    <Compile Include="Metrics\RedisMaxMemory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Metrics\RedisMemoryUsage.cs" />
     <Compile Include="Metrics\RedisUptime.cs" />

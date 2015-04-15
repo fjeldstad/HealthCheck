@@ -190,6 +190,6 @@ public class TemperatureIsBelowFreezingPoint : IChecker
 ### Hihaj.HealthCheck.Redis
 
 - `RedisIsAvailable` - self-explanatory.
-- `RedisHasFreeMemory` - passes as long as Redis uses less than a (configurable) amount of memory.
+- `RedisHasFreeMemory` - passes as long as Redis has more than a (configurable) amount of free memory (or no upper limit).
 
 *Note:* This package depends on [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis).
