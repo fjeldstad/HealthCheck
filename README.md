@@ -1,4 +1,4 @@
-# HealthCheck - flexible, asynchronous health checks for your apps
+# HealthCheck - flexible, asynchronous health checks for your .NET apps
 
 [![Build status](https://img.shields.io/appveyor/ci/hihaj/healthcheck/master.svg)](https://ci.appveyor.com/project/Hihaj/healthcheck/branch/master)
 [![Lastest NuGet package version](https://img.shields.io/nuget/v/Hihaj.HealthCheck.svg)](https://www.nuget.org/packages?q=hihaj.healthcheck)
@@ -15,7 +15,7 @@ A conceptual example could be to require that CPU usage is below 80% and Redis i
 
 ## Getting started
 
-HealthCheck can be used in any type of application - just create an instance of `HealthCheck`, add some `IChecker` implementations and run it. A simple example that uses a built-in checker from the `Hihaj.HealthCheck.Windows` package:
+HealthCheck can be used in any type of .NET application - just create an instance of `HealthCheck`, add some `IChecker` implementations and run it. A simple example that uses a built-in checker from the `Hihaj.HealthCheck.Windows` package:
 
 ```c#
 var healthCheck = new HealthCheck(new IChecker[]
