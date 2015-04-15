@@ -5,11 +5,13 @@
 
 Heavily inspired by [Runscope/healthcheck](https://github.com/Runscope/healthcheck), HealthCheck provides a simple but flexible way to monitor application health, including OS resources, third-party service status etc.
 
+
 ## High-level overview
 
 A *health check* runs one or more independent *checks* that either pass or not depending on some specific *metric(s)*. The health check as a whole is successful if (and only if) all checks pass.
 
 A conceptual example could be to require that CPU usage is below 80% and Redis is available.
+
 
 ## Getting started
 
@@ -99,3 +101,18 @@ When issuing a GET request for the health check url (using the configured route 
 ```
 
 This endpoint can easily be monitored continously by a tool or service such as [Runscope](https://www.runscope.com/) (in fact, the JSON output is compatible with the one produced by [Runscope/healthcheck](https://github.com/Runscope/healthcheck)).
+
+
+## Built-in `IChecker`s
+
+### Hihaj.HealthCheck.Windows
+
+- `CpuUsageIsOk` - passes as long as CPU usage is below a (configurable) threshold. _(Uses performance counters, which means the Windows user that is executing the health check (such as an app pool identity) has the correct permissions.)_
+- `SystemDriveHasFreeSpace` - passes as long as the system drive has at least X bytes available (configurable).
+
+### Hihaj.HealthCheck.Redis
+
+- `RedisIsAvailable` - self-explanatory.
+- `RedisHasFreeMemory` - passes as long as Redis uses less than a (configurable) amount of memory.
+
+*Note:* This package depends on [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis).
