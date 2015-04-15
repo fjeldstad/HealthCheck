@@ -144,7 +144,7 @@ public interface ITemperature : IMetric<double>
 
 public class Temperature : ITemperature
 {
-    public async Task<double> Read() 
+    public async Task<double> Read()
     {
       // Read the current temperature from some source,
       // preferably in an asynchronous manner.
@@ -168,7 +168,7 @@ public class TemperatureIsBelowFreezingPoint : IChecker
 
     public async Task<CheckResult> Check()
     {
-        var temp = await _temperature.Read();
+        var temp = await _temperature.Read().ConfigureAwait(false);
         return new CheckResult
         {
             Checker = Name,
