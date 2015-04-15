@@ -184,7 +184,7 @@ public class TemperatureIsBelowFreezingPoint : IChecker
 
 ### Hihaj.HealthCheck.Windows
 
-- `CpuUsageIsOk` - passes as long as CPU usage is below a (configurable) threshold. _(Uses performance counters, which means the Windows user that is executing the health check (such as an app pool identity) has the correct permissions.)_
+- `CpuUsageIsOk` - passes as long as CPU usage is below a (configurable) threshold. _(Uses performance counters, which means the Windows user that is executing the health check (such as an app pool identity) needs to have the correct permissions.)_
 - `SystemDriveHasFreeSpace` - passes as long as the system drive has at least X bytes available (configurable).
 
 ### Hihaj.HealthCheck.Redis
