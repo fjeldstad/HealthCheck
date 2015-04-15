@@ -62,7 +62,7 @@ namespace HealthCheck.Nancy.Tests
             });
 
             // Assert
-            Assert.That(((int)response.StatusCode).ToString().StartsWith("3"));
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Forbidden));
         }
 
         [Test]

@@ -21,7 +21,7 @@ namespace HealthCheck.Nancy
             }
             if (options.RequireHttps)
             {
-                this.RequiresHttps(redirect: true, httpsPort: options.HttpsPort);
+                this.RequiresHttps(redirect: false);
             }
 
             Get[options.Route, true] = async (_, ct) =>
@@ -39,14 +39,12 @@ namespace HealthCheck.Nancy
     {
         public string Route { get; set; }
         public bool RequireHttps { get; set; }
-        public int HttpsPort { get; set; }
         public Func<NancyContext, Task<bool>> AuthorizationCallback { get; set; }
 
         public HealthCheckOptions()
         {
             Route = "/healthcheck";
             RequireHttps = true;
-            HttpsPort = 443;
             AuthorizationCallback = null;
         }
     }
