@@ -3,15 +3,15 @@
   <metadata>
     <id>Hihaj.HealthCheck.Nancy</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>Anders Fjeldstad</authors>
+    <owners>Anders Fjeldstad</owners>
     <licenseUrl>https://raw.githubusercontent.com/Hihaj/HealthCheck/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Hihaj/HealthCheck</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <description>Nancy module for exposing a health check endpoint backed by Hihaj.HealthCheck.</description>
+    <releaseNotes></releaseNotes>
     <copyright>Anders Fjeldstad 2015</copyright>
-    <tags>service nancy health check healthcheck monitoring</tags>
+    <tags>nancy async healthcheck</tags>
     <dependencies>
       <dependency id="Nancy" version="1.1" />
       <dependency id="Hihaj.HealthCheck" version="$version$" />

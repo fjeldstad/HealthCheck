@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("HealthCheck.Nancy")]
-[assembly: AssemblyDescription("Nancy module for exposing a health check endpoint backed by Hihaj.HealthCheck.")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

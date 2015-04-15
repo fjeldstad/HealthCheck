@@ -3,15 +3,15 @@
   <metadata>
     <id>Hihaj.HealthCheck.Redis</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>Anders Fjeldstad</authors>
+    <owners>Anders Fjeldstad</owners>
     <licenseUrl>https://raw.githubusercontent.com/Hihaj/HealthCheck/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Hihaj/HealthCheck</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <description>Redis checkers and metrics for Hihaj.HealthCheck.</description>
+    <releaseNotes></releaseNotes>
     <copyright>Anders Fjeldstad 2015</copyright>
-    <tags>service redis health check healthcheck monitoring</tags>
+    <tags>redis async healthcheck</tags>
     <dependencies>
       <dependency id="StackExchange.Redis" version="1.0.414" />
       <dependency id="Hihaj.HealthCheck" version="$version$" />

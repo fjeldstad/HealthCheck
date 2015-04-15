@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("HealthCheck.Windows")]
-[assembly: AssemblyDescription("Windows OS-specific checkers and metrics for Hihaj.HealthCheck.")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

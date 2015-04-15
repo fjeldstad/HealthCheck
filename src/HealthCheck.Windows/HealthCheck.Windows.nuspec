@@ -3,15 +3,15 @@
   <metadata>
     <id>Hihaj.HealthCheck.Windows</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>Anders Fjeldstad</authors>
+    <owners>Anders Fjeldstad</owners>
     <licenseUrl>https://raw.githubusercontent.com/Hihaj/HealthCheck/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Hihaj/HealthCheck</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <description>Windows OS-specific checkers and metrics for Hihaj.HealthCheck.</description>
+    <releaseNotes></releaseNotes>
     <copyright>Anders Fjeldstad 2015</copyright>
-    <tags>service nancy health check healthcheck monitoring</tags>
+    <tags>async windows os healthcheck</tags>
     <dependencies>
       <dependency id="Hihaj.HealthCheck" version="$version$" />
     </dependencies>

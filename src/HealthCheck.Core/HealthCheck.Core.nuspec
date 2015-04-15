@@ -3,14 +3,14 @@
   <metadata>
     <id>Hihaj.HealthCheck</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>Anders Fjeldstad</authors>
+    <owners>Anders Fjeldstad</owners>
     <licenseUrl>https://raw.githubusercontent.com/Hihaj/HealthCheck/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Hihaj/HealthCheck</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Moved Windows-specific checkers and metrics to the (new) Hihaj.HealthCheck.Windows package.</releaseNotes>
+    <description>Flexible asynchronous healthcheck for apps.</description>
+    <releaseNotes></releaseNotes>
     <copyright>Anders Fjeldstad 2015</copyright>
-    <tags>service health check healthcheck monitoring</tags>
+    <tags>async healthcheck</tags>
   </metadata>
 </package>

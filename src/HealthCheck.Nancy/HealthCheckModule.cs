@@ -17,8 +17,7 @@ namespace HealthCheck.Nancy
             IEnumerable<IChecker> checkers, 
             string route = DefaultRoute, 
             bool requireHttps = true,
-            Func<NancyContext, Task<bool>> authorized = null,
-            Action<Exception> logException = null)
+            Func<NancyContext, Task<bool>> authorized = null)
         {
             if (requireHttps)
             {
@@ -27,28 +26,11 @@ namespace HealthCheck.Nancy
 
             Get[route, true] = async (_, ct) =>
             {
-                try
+                if (authorized != null && !await authorized(Context))
                 {
-                    if (authorized != null && !await authorized(Context))
-                    {
-                        return HttpStatusCode.Unauthorized;
-                    }
-                    return Response.AsJson(new HealthCheckResult(await Task.WhenAll(checkers.Select(x => x.Check()))));
+                    return HttpStatusCode.Unauthorized;
                 }
-                catch (Exception ex)
-                {
-                    if (logException != null)
-                    {
-                        try
-                        {
-                            logException(ex);
-                        }
-                        catch
-                        {
-                        }
-                    }
-                    throw;
-                }
+                return Response.AsJson(await (new Core.HealthCheck(checkers).Run()));
             };
         }
     }
