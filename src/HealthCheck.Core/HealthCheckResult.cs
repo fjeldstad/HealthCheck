@@ -16,11 +16,11 @@ namespace HealthCheck.Core
             _results = results.OrderBy(x => x.Checker).ToArray();
             _status = _results.All(x => x.Passed) ? HealthCheckResultStatus.Success : HealthCheckResultStatus.Failure;
         }
+    }
 
-        public enum HealthCheckResultStatus
-        {
-            Success,
-            Failure
-        }
+    public enum HealthCheckResultStatus
+    {
+        Success,
+        Failure
     }
 }

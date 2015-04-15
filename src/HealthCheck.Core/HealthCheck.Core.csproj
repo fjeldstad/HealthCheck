@@ -39,6 +39,7 @@
     </Compile>
     <Compile Include="CheckerBase.cs" />
     <Compile Include="CheckResult.cs" />
+    <Compile Include="HealthCheck.cs" />
     <Compile Include="HealthCheckResult.cs" />
     <Compile Include="IChecker.cs" />
     <Compile Include="IMetric.cs" />
