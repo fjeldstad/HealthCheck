@@ -6,21 +6,16 @@ namespace HealthCheck.Core
     public class HealthCheckResult
     {
         private readonly CheckResult[] _results;
-        private readonly HealthCheckStatus _status;
+        private readonly bool _passed;
 
         public CheckResult[] Results { get { return _results; } }
-        public HealthCheckStatus Status { get { return _status; } }
+        public bool Passed { get { return _passed; } }
+        public string Status { get { return _passed ? "success" : "failure"; } }
 
         public HealthCheckResult(IEnumerable<CheckResult> results)
         {
             _results = results.OrderBy(x => x.Checker).ToArray();
-            _status = _results.All(x => x.Passed) ? HealthCheckStatus.Success : HealthCheckStatus.Failure;
+            _passed = _results.All(x => x.Passed);
         }
-    }
-
-    public enum HealthCheckStatus
-    {
-        Success,
-        Failure
     }
 }

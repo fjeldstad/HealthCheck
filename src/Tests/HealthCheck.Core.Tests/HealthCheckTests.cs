@@ -21,7 +21,8 @@ namespace HealthCheck.Core.Tests
             var result = await healthCheck.Run();
 
             // Assert
-            Assert.That(result.Status, Is.EqualTo(HealthCheckStatus.Success));
+            Assert.That(result.Passed, Is.True);
+            Assert.That(result.Status, Is.EqualTo("success"));
             Assert.That(result.Results, Is.Empty);
         }
 
@@ -35,7 +36,8 @@ namespace HealthCheck.Core.Tests
             var result = await healthCheck.Run();
 
             // Assert
-            Assert.That(result.Status, Is.EqualTo(HealthCheckStatus.Success));
+            Assert.That(result.Passed, Is.True);
+            Assert.That(result.Status, Is.EqualTo("success"));
             Assert.That(result.Results, Is.Empty);
         }
 
@@ -85,7 +87,8 @@ namespace HealthCheck.Core.Tests
             var result = await healthCheck.Run();
 
             // Assert
-            Assert.That(result.Status, Is.EqualTo(HealthCheckStatus.Failure));
+            Assert.That(result.Passed, Is.False);
+            Assert.That(result.Status, Is.EqualTo("failure"));
             Assert.That(result.Results.Length, Is.EqualTo(checkerMocks.Length));
             foreach (var checkerMock in checkerMocks)
             {
@@ -118,7 +121,8 @@ namespace HealthCheck.Core.Tests
             var result = await healthCheck.Run();
 
             // Assert
-            Assert.That(result.Status, Is.EqualTo(HealthCheckStatus.Failure));
+            Assert.That(result.Passed, Is.False);
+            Assert.That(result.Status, Is.EqualTo("failure"));
             Assert.That(result.Results.Length, Is.EqualTo(checkerMocks.Length));
             Assert.That(result.Results.Count(x => x.Passed), Is.EqualTo(checkerMocks.Length - 1));
         }
@@ -143,7 +147,8 @@ namespace HealthCheck.Core.Tests
             var result = await healthCheck.Run();
 
             // Assert
-            Assert.That(result.Status, Is.EqualTo(HealthCheckStatus.Success));
+            Assert.That(result.Passed, Is.True);
+            Assert.That(result.Status, Is.EqualTo("success"));
             Assert.That(result.Results.Length, Is.EqualTo(checkerMocks.Length));
             Assert.That(result.Results.Count(x => x.Passed), Is.EqualTo(checkerMocks.Length));
         }
@@ -161,7 +166,8 @@ namespace HealthCheck.Core.Tests
             var result = await healthCheck.Run();
 
             // Assert
-            Assert.That(result.Status, Is.EqualTo(HealthCheckStatus.Failure));
+            Assert.That(result.Passed, Is.False);
+            Assert.That(result.Status, Is.EqualTo("failure"));
             Assert.That(result.Results, Is.Not.Null);
             Assert.That(result.Results.Single().Checker, Is.EqualTo("HealthCheck"));
             Assert.That(result.Results.Single().Passed, Is.False);
