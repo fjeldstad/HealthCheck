@@ -103,6 +103,83 @@ When issuing a GET request for the health check url (using the configured route 
 This endpoint can easily be monitored continously by a tool or service such as [Runscope](https://www.runscope.com/) (in fact, the JSON output is compatible with the one produced by [Runscope/healthcheck](https://github.com/Runscope/healthcheck)).
 
 
+## Creating a custom `IChecker`
+
+Implement the `IChecker` interface to define custom checks:
+
+```c#
+public interface IChecker
+{
+    string Name { get; }
+    Task<CheckResult> Check();
+}
+```
+
+The `CheckResult` returned by the `Check` method is very simple:
+
+```c#
+public class CheckResult
+{
+    public string Checker { get; set; } // Display name of the check
+    public bool Passed { get; set; }    // Whether it passed or not
+    public string Output { get; set; }  // Description of the outcome
+}
+```
+
+You can of course implement your checks in any way you like, but to improve testability you could base the logic on readings from one or more _metrics_:
+
+```c#
+public interface IMetric<T>
+{
+    Task<T> Read();
+}
+```
+
+A simple example:
+
+```c#
+public interface ITemperature : IMetric<double>
+{
+}
+
+public class Temperature : ITemperature
+{
+    public async Task<double> Read() 
+    {
+      // Read the current temperature from some source,
+      // preferably in an asynchronous manner.
+      // ...
+    }
+}
+
+public class TemperatureIsBelowFreezingPoint : IChecker
+{
+    private readonly ITemperature _temperature;
+
+    public string Name
+    {
+        get { return "Temperature is below freezing point"; }
+    }
+
+    public TemperatureIsBelowFreezingPoint(ITemperature temperature)
+    {
+        _temperature = temperature;
+    }
+
+    public async Task<CheckResult> Check()
+    {
+        var temp = await _temperature.Read();
+        return new CheckResult
+        {
+            Checker = Name,
+            Passed = temp <= 0,
+            Output = string.Format("Current temperature is {0:F1} °C.", temp)
+        };
+    }
+}
+```
+
+
 ## Built-in `IChecker`s
 
 ### Hihaj.HealthCheck.Windows
