@@ -22,7 +22,8 @@ var healthCheck = new HealthCheck(new IChecker[]
 });
 var result = await healthCheck.Run();
 
-Console.WriteLine(result.Status); // Success or Failure
+Console.WriteLine(result.Passed); // true/false
+Console.WriteLine(result.Status); // "success"/"failure"
 foreach (var checkResult in result.Results)
 {
     Console.WriteLine(checkResult.Checker); // E.g. "System drive has free space"
