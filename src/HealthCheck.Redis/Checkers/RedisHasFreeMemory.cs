@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using HealthCheck.Core;
 using HealthCheck.Redis.Metrics;
 
@@ -15,7 +16,10 @@ namespace HealthCheck.Redis.Checkers
             get { return "Redis has free memory"; }
         }
 
-        public RedisHasFreeMemory(IRedisMemoryUsage redisMemoryUsage, IRedisMaxMemory redisMaxMemory, Options options = null)
+        public RedisHasFreeMemory(
+            IRedisMemoryUsage redisMemoryUsage, 
+            IRedisMaxMemory redisMaxMemory, 
+            Options options = null)
         {
             _redisMemoryUsage = redisMemoryUsage;
             _redisMaxMemory = redisMaxMemory;

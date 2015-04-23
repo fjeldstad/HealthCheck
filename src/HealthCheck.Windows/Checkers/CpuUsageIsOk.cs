@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using HealthCheck.Core;
 using HealthCheck.Windows.Metrics;
 
@@ -14,7 +15,9 @@ namespace HealthCheck.Windows.Checkers
             get { return "CPU usage is OK"; }
         }
 
-        public CpuUsageIsOk(ICpuUsage cpuUsage, Options options = null)
+        public CpuUsageIsOk(
+            ICpuUsage cpuUsage, 
+            Options options = null)
         {
             _cpuUsage = cpuUsage;
             _options = options ?? new Options();

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using HealthCheck.Core;
 using HealthCheck.Redis.Metrics;
 
@@ -14,7 +15,9 @@ namespace HealthCheck.Redis.Checkers
             get { return "Redis is available"; }
         }
 
-        public RedisIsAvailable(IRedisVersion redisVersion, IRedisUptime redisUptime)
+        public RedisIsAvailable(
+            IRedisVersion redisVersion, 
+            IRedisUptime redisUptime)
         {
             _redisVersion = redisVersion;
             _redisUptime = redisUptime;

@@ -41,6 +41,7 @@
     <Compile Include="CheckResult.cs" />
     <Compile Include="HealthCheck.cs" />
     <Compile Include="HealthCheckResult.cs" />
+    <Compile Include="Helpers\TaskExtensions.cs" />
     <Compile Include="IChecker.cs" />
     <Compile Include="IMetric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
