@@ -46,6 +46,17 @@ namespace HealthCheck.Core
                 await Task.WhenAll(checkResults).ConfigureAwait(false);
                 return new HealthCheckResult(checkResults.Select(x => x.Result));
             }
+            catch (AggregateException ex)
+            {
+                return new HealthCheckResult(ex.Flatten().InnerExceptions.Select(innerEx => new CheckResult
+                {
+                    Checker = innerEx.TargetSite != null && !string.IsNullOrEmpty(innerEx.TargetSite.Name) ?
+                        innerEx.TargetSite.Name :
+                        "HealthCheck",
+                    Passed = false,
+                    Output = innerEx.Message
+                }));
+            }
             catch (Exception ex)
             {
                 // Never let Run throw. Instead, returned a failed HealthCheckResult.
