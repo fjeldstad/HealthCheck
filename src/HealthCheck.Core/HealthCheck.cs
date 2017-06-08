@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthCheck.Core.Results;
 
 namespace HealthCheck.Core
 {
@@ -20,7 +21,7 @@ namespace HealthCheck.Core
             {
                 if (_checkers == null)
                 {
-                    return new HealthCheckResult(Enumerable.Empty<CheckResult>());
+                    return new HealthCheckResult(Enumerable.Empty<ICheckResult>());
                 }
                 // Run all checks in parallel (if possible). Catch exceptions for each
                 // checker individually.
@@ -36,7 +37,8 @@ namespace HealthCheck.Core
                         {
                             return new CheckResult
                             {
-                                Checker = x.Name,
+                                CheckerName = x.Name,
+                                SectionName = x.SectionName,
                                 Passed = false,
                                 Output = ex.Message
                             };
@@ -50,7 +52,7 @@ namespace HealthCheck.Core
             {
                 return new HealthCheckResult(ex.Flatten().InnerExceptions.Select(innerEx => new CheckResult
                 {
-                    Checker = innerEx.TargetSite != null && !string.IsNullOrEmpty(innerEx.TargetSite.Name) ?
+                    CheckerName = innerEx.TargetSite != null && !string.IsNullOrEmpty(innerEx.TargetSite.Name) ?
                         innerEx.TargetSite.Name :
                         "HealthCheck",
                     Passed = false,
@@ -64,7 +66,7 @@ namespace HealthCheck.Core
                 {
                     new CheckResult
                     {
-                        Checker = "HealthCheck",
+                        CheckerName = "HealthCheck",
                         Passed = false,
                         Output = ex.Message
                     }

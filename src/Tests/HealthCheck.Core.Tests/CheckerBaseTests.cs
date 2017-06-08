@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HealthCheck.Core.Results;
 using NUnit.Framework;
 
 namespace HealthCheck.Core.Tests
@@ -33,18 +34,13 @@ namespace HealthCheck.Core.Tests
         public class DummyChecker : CheckerBase
         {
             private readonly Func<Task<CheckResult>> _check;
- 
-            public override string Name
-            {
-                get { return "Dummy checker"; }
-            }
 
-            public DummyChecker(Func<Task<CheckResult>> check)
+            public DummyChecker(Func<Task<CheckResult>> check) : base("Dummy checker")
             {
                 _check = check;
             }
 
-            protected override async Task<CheckResult> CheckCore()
+            protected override async Task<ICheckResult> CheckCore()
             {
                 return await _check().ConfigureAwait(false);
             }

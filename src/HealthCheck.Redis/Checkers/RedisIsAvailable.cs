@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core;
+using HealthCheck.Core.Results;
 using HealthCheck.Redis.Metrics;
 
 namespace HealthCheck.Redis.Checkers
@@ -10,20 +11,15 @@ namespace HealthCheck.Redis.Checkers
         private readonly IRedisVersion _redisVersion;
         private readonly IRedisUptime _redisUptime;
 
-        public override string Name
-        {
-            get { return "Redis is available"; }
-        }
-
         public RedisIsAvailable(
             IRedisVersion redisVersion, 
-            IRedisUptime redisUptime)
+            IRedisUptime redisUptime) : base("Redis is available")
         {
             _redisVersion = redisVersion;
             _redisUptime = redisUptime;
         }
 
-        protected override async Task<CheckResult> CheckCore()
+        protected override async Task<ICheckResult> CheckCore()
         {
             var redisVersion = await _redisVersion.Read().ConfigureAwait(false);
             var redisUptime = await _redisUptime.Read().ConfigureAwait(false);

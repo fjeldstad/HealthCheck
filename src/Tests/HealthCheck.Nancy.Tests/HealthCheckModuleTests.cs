@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HealthCheck.Core;
+using HealthCheck.Core.Results;
 using Moq;
 using Nancy;
 using Nancy.Testing;

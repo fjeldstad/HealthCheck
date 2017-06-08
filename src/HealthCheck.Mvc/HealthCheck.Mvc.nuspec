@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Hihaj.HealthCheck.Mvc</id>
+    <version>$version$</version>
+    <authors>Kostiantyn Chomakov, Anders Fjeldstad</authors>
+    <owners>Kostiantyn Chomakov, Anders Fjeldstad</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Hihaj/HealthCheck/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Hihaj/HealthCheck</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Mvc module for exposing a health check endpoint backed by Hihaj.HealthCheck.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Anders Fjeldstad 2015</copyright>
+    <tags>mvc async healthcheck</tags>
+    <dependencies>
+	  <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" targetFramework="net451" />
+	  <dependency id="Microsoft.AspNet.Razor" version="3.2.3" targetFramework="net451" />
+	  <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" targetFramework="net451" />
+	  <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" targetFramework="net451" />
+      <dependency id="Hihaj.HealthCheck" version="$version$" />
+    </dependencies>
+  </metadata>
+</package>

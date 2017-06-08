@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core;
+using HealthCheck.Core.Results;
 using HealthCheck.Windows.Metrics;
 
 namespace HealthCheck.Windows.Checkers
@@ -10,18 +11,14 @@ namespace HealthCheck.Windows.Checkers
         private readonly IAvailableSystemDriveSpace _availableSystemDriveSpace;
         private readonly Options _options;
 
-        public override string Name
-        {
-            get { return "System drive has free space"; }
-        }
-
         public SystemDriveHasFreeSpace(IAvailableSystemDriveSpace availableSystemDriveSpace, Options options = null)
+            : base("System drive has free space")
         {
             _availableSystemDriveSpace = availableSystemDriveSpace;
             _options = options ?? new Options();
         }
 
-        protected override async Task<CheckResult> CheckCore()
+        protected override async Task<ICheckResult> CheckCore()
         {
             var freeBytes = await _availableSystemDriveSpace.Read().ConfigureAwait(false);
             return CreateResult(

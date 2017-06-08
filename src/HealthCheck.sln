@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Core", "HealthCheck.Core\HealthCheck.Core.csproj", "{7052554B-0005-47E4-B3C3-318D41261E72}"
 EndProject
@@ -29,6 +29,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Redis.Tests", "Tests\HealthCheck.Redis.Tests\HealthCheck.Redis.Tests.csproj", "{87678CED-1200-4B5D-8CC5-B8CAC3FF4229}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Nancy.Tests", "Tests\HealthCheck.Nancy.Tests\HealthCheck.Nancy.Tests.csproj", "{F5C18CB0-A863-4DA7-A99F-1E4AE3B717F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Mvc", "HealthCheck.Mvc\HealthCheck.Mvc.csproj", "{9B80F9AD-3409-464B-B995-098DC4F55089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.WebApi", "HealthCheck.WebApi\HealthCheck.WebApi.csproj", "{1A3A5F34-DAC3-4038-830B-0F4A945A909C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +72,14 @@ Global
 		{F5C18CB0-A863-4DA7-A99F-1E4AE3B717F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5C18CB0-A863-4DA7-A99F-1E4AE3B717F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5C18CB0-A863-4DA7-A99F-1E4AE3B717F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B80F9AD-3409-464B-B995-098DC4F55089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B80F9AD-3409-464B-B995-098DC4F55089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B80F9AD-3409-464B-B995-098DC4F55089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B80F9AD-3409-464B-B995-098DC4F55089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3A5F34-DAC3-4038-830B-0F4A945A909C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3A5F34-DAC3-4038-830B-0F4A945A909C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3A5F34-DAC3-4038-830B-0F4A945A909C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3A5F34-DAC3-4038-830B-0F4A945A909C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core;
+using HealthCheck.Core.Results;
 using HealthCheck.Windows.Metrics;
 
 namespace HealthCheck.Windows.Checkers
@@ -10,20 +11,15 @@ namespace HealthCheck.Windows.Checkers
         private readonly ICpuUsage _cpuUsage;
         private readonly Options _options; 
 
-        public override string Name
-        {
-            get { return "CPU usage is OK"; }
-        }
-
         public CpuUsageIsOk(
             ICpuUsage cpuUsage, 
-            Options options = null)
+            Options options = null) : base("CPU usage is OK")
         {
             _cpuUsage = cpuUsage;
             _options = options ?? new Options();
         }
 
-        protected override async Task<CheckResult> CheckCore()
+        protected override async Task<ICheckResult> CheckCore()
         {
             var currentCpuUsage = await _cpuUsage.Read().ConfigureAwait(false);
             return CreateResult(

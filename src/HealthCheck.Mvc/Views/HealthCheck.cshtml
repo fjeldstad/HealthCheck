@@ -1,0 +1,56 @@
+﻿@model HealthCheck.Mvc.Models.HealthCheckResultModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HealthCheck</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 10px
+            }
+            fieldset {
+                margin-bottom: 5px;
+            }
+            span, legend {
+                font-weight: bold;
+            }
+            h4 {
+                margin-left: 10px;
+            }
+            .failed {
+                color: red;
+            }
+            .passed {
+                color: green;
+            }
+            .questionable {
+                color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h4>[@Model.DateTimeString UTC] HealthCheck Overall Status: <span class="@(Model.Passed ? "passed" : "failed")">@Model.Output</span></h4>
+            <fieldset>
+                <legend>Summary</legend>
+                <p>Total checks: <span>@Model.Summary.TotalChecks</span></p>
+                <p>Passed checks: <span class="@(Model.Summary.PassedChecks != Model.Summary.TotalChecks ? Model.Summary.PassedChecks == 0 ? "failed" : "questionable" : "passed")">@Model.Summary.PassedChecks</span></p>
+                <p>Failed checks: <span class="@(Model.Summary.FailedChecks != Model.Summary.TotalChecks ? Model.Summary.FailedChecks == 0 ? "passed" : "questionable" : "failed")">@Model.Summary.FailedChecks</span></p>
+            </fieldset>
+            @foreach (var checkSection in Model.Sections)
+            {
+                <fieldset>
+                    <legend>@checkSection.Key</legend>
+                    @foreach (var check in checkSection.AsEnumerable())
+                    {
+                        <p>@check.CheckerName: <span class="@(check.Passed ? "passed" : "failed")">@check.Output</span></p>
+                    }
+                </fieldset>
+            }
+        </div>
+    </body>
+</html>

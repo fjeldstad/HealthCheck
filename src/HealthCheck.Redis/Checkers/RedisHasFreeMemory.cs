@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core;
+using HealthCheck.Core.Results;
 using HealthCheck.Redis.Metrics;
 
 namespace HealthCheck.Redis.Checkers
@@ -11,22 +12,17 @@ namespace HealthCheck.Redis.Checkers
         private readonly IRedisMaxMemory _redisMaxMemory;
         private readonly Options _options;
 
-        public override string Name
-        {
-            get { return "Redis has free memory"; }
-        }
-
         public RedisHasFreeMemory(
             IRedisMemoryUsage redisMemoryUsage, 
             IRedisMaxMemory redisMaxMemory, 
-            Options options = null)
+            Options options = null) : base("Redis has free memory")
         {
             _redisMemoryUsage = redisMemoryUsage;
             _redisMaxMemory = redisMaxMemory;
             _options = options ?? new Options();
         }
 
-        protected override async Task<CheckResult> CheckCore()
+        protected override async Task<ICheckResult> CheckCore()
         {
             var maxBytes = await _redisMaxMemory.Read().ConfigureAwait(false);
             var usedBytes = await _redisMemoryUsage.Read().ConfigureAwait(false);

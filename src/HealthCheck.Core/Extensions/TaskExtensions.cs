@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace HealthCheck.Core.Helpers
+namespace HealthCheck.Core.Extensions
 {
     public static class TaskExtensions
     {
