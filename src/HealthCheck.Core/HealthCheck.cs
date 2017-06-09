@@ -2,30 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthCheck.Core.Configuration;
 using HealthCheck.Core.Results;
 
 namespace HealthCheck.Core
 {
-    public class HealthCheck
+    public class HealthCheck : HealthCheckBase
     {
-        private readonly IEnumerable<IChecker> _checkers;
+        public HealthCheck(IEnumerable<IChecker> checkers) : base(checkers) { }
 
-        public HealthCheck(IEnumerable<IChecker> checkers)
-        {
-            _checkers = checkers;
-        }
-
-        public async Task<HealthCheckResult> Run()
+        public override async Task<HealthCheckResult> Run()
         {
             try
             {
-                if (_checkers == null)
+                if (Checkers == null)
                 {
                     return new HealthCheckResult(Enumerable.Empty<ICheckResult>());
                 }
                 // Run all checks in parallel (if possible). Catch exceptions for each
                 // checker individually.
-                var checkResults = _checkers
+                var checkResults = Checkers
                     .AsParallel()
                     .Select(async x =>
                     {

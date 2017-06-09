@@ -40,6 +40,8 @@
     <Compile Include="CheckerBase.cs" />
     <Compile Include="Configuration\ConfiguratorBase.cs" />
     <Compile Include="Configuration\IHealthCheckConfigurator.cs" />
+    <Compile Include="HealthCheckBase.cs" />
+    <Compile Include="IHealthCheck.cs" />
     <Compile Include="Results\HealthCheckResult.cs" />
     <Compile Include="Results\ICheckResult.cs" />
     <Compile Include="Results\CheckResult.cs" />
