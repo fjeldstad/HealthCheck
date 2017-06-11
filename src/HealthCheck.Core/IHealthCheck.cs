@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using HealthCheck.Core.Results;
 
 namespace HealthCheck.Core

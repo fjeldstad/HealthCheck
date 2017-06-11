@@ -21,13 +21,12 @@ namespace HealthCheck.Core
                 }
                 // Run all checks in parallel (if possible). Catch exceptions for each
                 // checker individually.
-                var checkResults = Checkers
-                    .AsParallel()
+                var checkResults = Checkers.AsParallel()
                     .Select(async x =>
                     {
                         try
                         {
-                            return await x.Check().ConfigureAwait(false);
+                            return !x.PreserveContext ? await x.Check().ConfigureAwait(false) : x.Check().Result;
                         }
                         catch (Exception ex)
                         {
@@ -39,10 +38,11 @@ namespace HealthCheck.Core
                                 Output = ex.Message
                             };
                         }
-                    })
-                    .ToArray();
+                    }).ToArray();
                 await Task.WhenAll(checkResults).ConfigureAwait(false);
-                return new HealthCheckResult(checkResults.Select(x => x.Result));
+
+                var result = new HealthCheckResult(checkResults.Select(x => x.Result));
+                return result;
             }
             catch (AggregateException ex)
             {

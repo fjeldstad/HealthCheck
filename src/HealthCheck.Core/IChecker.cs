@@ -8,6 +8,7 @@ namespace HealthCheck.Core
     {
         string Name { get; set; }
         string SectionName { get; set; }
+        bool PreserveContext { get; }
         Task<ICheckResult> Check();
     }
 }
