@@ -20,7 +20,7 @@ namespace HealthCheck.WebApi
             return _instance ?? (_instance = new WebApiHealthCheckСonfigurator());
         }
 
-        public WebApiHealthCheckСonfigurator ConfigureEndpoint(String url)
+        public WebApiHealthCheckСonfigurator ConfigureEndpoint(string url)
         {
             GlobalConfiguration.Configure(c =>
             {

@@ -12,12 +12,12 @@ namespace HealthCheck.Core
         public virtual bool PreserveContext => false;
         public virtual TimeSpan? Timeout { private get; set; }
 
-        protected CheckerBase(String name, String sectionName) : this(name)
+        protected CheckerBase(string name, string sectionName) : this(name)
         {
             SectionName = sectionName;
         }
 
-        protected CheckerBase(String name)
+        protected CheckerBase(string name)
         {
             Name = name;
         }

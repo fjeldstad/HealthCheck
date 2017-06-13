@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace HealthCheck.Mvc.ViewDescovery
+namespace HealthCheck.Mvc.ViewDiscovery
 {
     public class HealthCheckVirtualFile : System.Web.Hosting.VirtualFile
     {

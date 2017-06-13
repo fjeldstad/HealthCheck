@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Web.Caching;
 using System.Web.Hosting;
 
-namespace HealthCheck.Mvc.ViewDescovery
+namespace HealthCheck.Mvc.ViewDiscovery
 {
     public class HealthCheckViewVirtualPathProvider : VirtualPathProvider
     {

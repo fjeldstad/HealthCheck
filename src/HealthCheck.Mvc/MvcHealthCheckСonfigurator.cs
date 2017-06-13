@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using HealthCheck.Core;
 using HealthCheck.Core.Configuration;
-using HealthCheck.Mvc.ViewDescovery;
+using HealthCheck.Mvc.ViewDiscovery;
 
 namespace HealthCheck.Mvc
 {
@@ -21,7 +21,7 @@ namespace HealthCheck.Mvc
             return _instance ?? (_instance = new MvcHealthCheckСonfigurator());
         }
 
-        public MvcHealthCheckСonfigurator ConfigureEndpoint(RouteCollection routeCollection, String url)
+        public MvcHealthCheckСonfigurator ConfigureEndpoint(RouteCollection routeCollection, string url)
         {
             routeCollection.MapRoute(name: "MvcHealthCheckRoute",
                url: url,

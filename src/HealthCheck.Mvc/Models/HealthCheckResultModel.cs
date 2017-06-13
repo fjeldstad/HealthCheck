@@ -8,11 +8,11 @@ namespace HealthCheck.Mvc.Models
 {
     public class HealthCheckResultModel
     {
-        public String DateTimeString { get; }
-        public Boolean Passed { get; }
-        public String Output { get; }
+        public string DateTimeString { get; }
+        public bool Passed { get; }
+        public string Output { get; }
         public HealthCheckResultSummary Summary { get; }
-        public IEnumerable<IGrouping<String, ICheckResult>> Sections { get; }
+        public IEnumerable<IGrouping<string, ICheckResult>> Sections { get; }
         public HealthCheckResultModel(HealthCheckResult result)
         {
             DateTimeString = DateTime.UtcNow.ToString("G");
@@ -27,20 +27,20 @@ namespace HealthCheck.Mvc.Models
             Sections = result.Results
                 .Select(r =>
                 {
-                    if (String.IsNullOrEmpty(r.SectionName))
+                    if (string.IsNullOrEmpty(r.SectionName))
                     {
                         r.SectionName = "#";
                     }
                     return r;
                 })
-                .Where(r => !String.IsNullOrEmpty(r.SectionName)).ToLookup(r => r.SectionName).OrderBy(gr => gr.Key);
+                .Where(r => !string.IsNullOrEmpty(r.SectionName)).ToLookup(r => r.SectionName).OrderBy(gr => gr.Key);
         }
     }
 
     public class HealthCheckResultSummary
     {
-        public Int32 TotalChecks { get; set; }
-        public Int32 PassedChecks { get; set; }
-        public Int32 FailedChecks { get; set; }
+        public int TotalChecks { get; set; }
+        public int PassedChecks { get; set; }
+        public int FailedChecks { get; set; }
     }
 }
