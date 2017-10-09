@@ -1,6 +1,6 @@
-﻿namespace HealthCheck.Core.Results
+﻿namespace HealthCheck.Core
 {
-    public class CheckResult : ICheckResult
+    public class CheckResult
     {
         public string CheckerName { get; set; }
         public string SectionName { get; set; }

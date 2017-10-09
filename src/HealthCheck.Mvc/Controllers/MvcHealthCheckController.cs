@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web.Mvc;
 using HealthCheck.Core;
-using HealthCheck.Core.Results;
 using HealthCheck.Mvc.Models;
 
 namespace HealthCheck.Mvc.Controllers
@@ -12,7 +11,7 @@ namespace HealthCheck.Mvc.Controllers
     public class MvcHealthCheckController : AsyncController
     {
         private const string Key = "result";
-        private readonly IHealthCheck _healthCheck;
+        private readonly Core.HealthCheck _healthCheck;
 
         public MvcHealthCheckController()
         {

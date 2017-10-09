@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core;
-using HealthCheck.Core.Results;
 using HealthCheck.Redis.Metrics;
 
 namespace HealthCheck.Redis.Checkers
@@ -22,7 +21,7 @@ namespace HealthCheck.Redis.Checkers
             _options = options ?? new Options();
         }
 
-        protected override async Task<ICheckResult> CheckCore()
+        protected override async Task<CheckResult> CheckCore()
         {
             var maxBytes = await _redisMaxMemory.Read().ConfigureAwait(false);
             var usedBytes = await _redisMemoryUsage.Read().ConfigureAwait(false);

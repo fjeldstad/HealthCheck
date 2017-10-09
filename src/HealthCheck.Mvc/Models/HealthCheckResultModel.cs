@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using HealthCheck.Core;
-using HealthCheck.Core.Results;
 
 namespace HealthCheck.Mvc.Models
 {
@@ -12,7 +11,7 @@ namespace HealthCheck.Mvc.Models
         public bool Passed { get; }
         public string Output { get; }
         public HealthCheckResultSummary Summary { get; }
-        public IEnumerable<IGrouping<string, ICheckResult>> Sections { get; }
+        public IEnumerable<IGrouping<string, CheckResult>> Sections { get; }
         public HealthCheckResultModel(HealthCheckResult result)
         {
             DateTimeString = DateTime.UtcNow.ToString("G");

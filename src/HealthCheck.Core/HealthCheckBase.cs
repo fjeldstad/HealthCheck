@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HealthCheck.Core.Results;
 
 namespace HealthCheck.Core
 {
-    public abstract class HealthCheckBase : IHealthCheck
+    public abstract class HealthCheckBase
     {
         protected readonly IEnumerable<IChecker> Checkers;
 

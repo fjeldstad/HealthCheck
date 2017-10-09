@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core.Extensions;
-using HealthCheck.Core.Results;
 
 namespace HealthCheck.Core
 {
@@ -22,7 +21,7 @@ namespace HealthCheck.Core
             Name = name;
         }
 
-        protected ICheckResult CreateResult(bool passed, string output)
+        protected CheckResult CreateResult(bool passed, string output)
         {
             return new CheckResult
             {
@@ -33,12 +32,12 @@ namespace HealthCheck.Core
             };
         }
 
-        protected Task<ICheckResult> CreateTaskResult(bool passed, string output)
+        protected Task<CheckResult> CreateTaskResult(bool passed, string output)
         {
             return Task.FromResult(CreateResult(passed, output));
         }
 
-        public async Task<ICheckResult> Check()
+        public async Task<CheckResult> Check()
         {
             try
             {
@@ -54,6 +53,6 @@ namespace HealthCheck.Core
             }
         }
 
-        protected abstract Task<ICheckResult> CheckCore();
+        protected abstract Task<CheckResult> CheckCore();
     }
 }

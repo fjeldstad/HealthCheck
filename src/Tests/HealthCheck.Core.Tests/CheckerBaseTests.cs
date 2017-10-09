@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HealthCheck.Core.Results;
 using NUnit.Framework;
 
 namespace HealthCheck.Core.Tests
@@ -40,7 +39,7 @@ namespace HealthCheck.Core.Tests
                 _check = check;
             }
 
-            protected override async Task<ICheckResult> CheckCore()
+            protected override async Task<CheckResult> CheckCore()
             {
                 return await _check().ConfigureAwait(false);
             }

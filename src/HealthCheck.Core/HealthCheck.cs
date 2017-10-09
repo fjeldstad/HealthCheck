@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HealthCheck.Core.Configuration;
-using HealthCheck.Core.Results;
 
 namespace HealthCheck.Core
 {
@@ -17,7 +16,7 @@ namespace HealthCheck.Core
             {
                 if (Checkers == null)
                 {
-                    return new HealthCheckResult(Enumerable.Empty<ICheckResult>());
+                    return new HealthCheckResult(Enumerable.Empty<CheckResult>());
                 }
                 // Run all checks in parallel (if possible). Catch exceptions for each
                 // checker individually.
@@ -41,8 +40,7 @@ namespace HealthCheck.Core
                     }).ToArray();
                 await Task.WhenAll(checkResults).ConfigureAwait(false);
 
-                var result = new HealthCheckResult(checkResults.Select(x => x.Result));
-                return result;
+                return new HealthCheckResult(checkResults.Select(x => x.Result));
             }
             catch (AggregateException ex)
             {

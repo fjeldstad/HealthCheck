@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using HealthCheck.Core;
-using HealthCheck.Core.Results;
 using HealthCheck.Redis.Metrics;
 
 namespace HealthCheck.Redis.Checkers
@@ -19,7 +18,7 @@ namespace HealthCheck.Redis.Checkers
             _redisUptime = redisUptime;
         }
 
-        protected override async Task<ICheckResult> CheckCore()
+        protected override async Task<CheckResult> CheckCore()
         {
             var redisVersion = await _redisVersion.Read().ConfigureAwait(false);
             var redisUptime = await _redisUptime.Read().ConfigureAwait(false);
