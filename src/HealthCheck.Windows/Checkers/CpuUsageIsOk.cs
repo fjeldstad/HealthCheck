@@ -10,14 +10,9 @@ namespace HealthCheck.Windows.Checkers
         private readonly ICpuUsage _cpuUsage;
         private readonly Options _options; 
 
-        public override string Name
-        {
-            get { return "CPU usage is OK"; }
-        }
-
         public CpuUsageIsOk(
             ICpuUsage cpuUsage, 
-            Options options = null)
+            Options options = null) : base("CPU usage is OK")
         {
             _cpuUsage = cpuUsage;
             _options = options ?? new Options();

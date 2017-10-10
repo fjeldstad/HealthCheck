@@ -11,15 +11,10 @@ namespace HealthCheck.Redis.Checkers
         private readonly IRedisMaxMemory _redisMaxMemory;
         private readonly Options _options;
 
-        public override string Name
-        {
-            get { return "Redis has free memory"; }
-        }
-
         public RedisHasFreeMemory(
             IRedisMemoryUsage redisMemoryUsage, 
             IRedisMaxMemory redisMaxMemory, 
-            Options options = null)
+            Options options = null) : base("Redis has free memory")
         {
             _redisMemoryUsage = redisMemoryUsage;
             _redisMaxMemory = redisMaxMemory;

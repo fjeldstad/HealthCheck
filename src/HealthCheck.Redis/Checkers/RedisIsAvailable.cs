@@ -10,14 +10,9 @@ namespace HealthCheck.Redis.Checkers
         private readonly IRedisVersion _redisVersion;
         private readonly IRedisUptime _redisUptime;
 
-        public override string Name
-        {
-            get { return "Redis is available"; }
-        }
-
         public RedisIsAvailable(
             IRedisVersion redisVersion, 
-            IRedisUptime redisUptime)
+            IRedisUptime redisUptime) : base("Redis is available")
         {
             _redisVersion = redisVersion;
             _redisUptime = redisUptime;

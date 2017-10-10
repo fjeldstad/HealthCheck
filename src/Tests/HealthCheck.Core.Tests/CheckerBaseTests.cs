@@ -33,13 +33,8 @@ namespace HealthCheck.Core.Tests
         public class DummyChecker : CheckerBase
         {
             private readonly Func<Task<CheckResult>> _check;
- 
-            public override string Name
-            {
-                get { return "Dummy checker"; }
-            }
 
-            public DummyChecker(Func<Task<CheckResult>> check)
+            public DummyChecker(Func<Task<CheckResult>> check) : base("Dummy checker")
             {
                 _check = check;
             }

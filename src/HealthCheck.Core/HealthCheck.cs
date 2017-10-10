@@ -2,48 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthCheck.Core.Configuration;
 
 namespace HealthCheck.Core
 {
-    public class HealthCheck
+    public class HealthCheck : HealthCheckBase
     {
-        private readonly IEnumerable<IChecker> _checkers;
+        public HealthCheck(IEnumerable<IChecker> checkers) : base(checkers) { }
 
-        public HealthCheck(IEnumerable<IChecker> checkers)
-        {
-            _checkers = checkers;
-        }
-
-        public async Task<HealthCheckResult> Run()
+        public override async Task<HealthCheckResult> Run()
         {
             try
             {
-                if (_checkers == null)
+                if (Checkers == null)
                 {
                     return new HealthCheckResult(Enumerable.Empty<CheckResult>());
                 }
                 // Run all checks in parallel (if possible). Catch exceptions for each
                 // checker individually.
-                var checkResults = _checkers
-                    .AsParallel()
+                var checkResults = Checkers.AsParallel()
                     .Select(async x =>
                     {
                         try
                         {
-                            return await x.Check().ConfigureAwait(false);
+                            return await x.Check().ConfigureAwait(x.PreserveContext);
                         }
                         catch (Exception ex)
                         {
                             return new CheckResult
                             {
                                 Checker = x.Name,
+                                SectionName = x.SectionName,
                                 Passed = false,
                                 Output = ex.Message
                             };
                         }
-                    })
-                    .ToArray();
+                    }).ToArray();
                 await Task.WhenAll(checkResults).ConfigureAwait(false);
+
                 return new HealthCheckResult(checkResults.Select(x => x.Result));
             }
             catch (AggregateException ex)

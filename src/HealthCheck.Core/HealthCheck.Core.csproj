@@ -39,14 +39,16 @@
     </Compile>
     <Compile Include="CheckerBase.cs" />
     <Compile Include="CheckResult.cs" />
-    <Compile Include="HealthCheck.cs" />
+    <Compile Include="Configuration\ConfiguratorBase.cs" />
+    <Compile Include="Configuration\IHealthCheckConfigurator.cs" />
+    <Compile Include="HealthCheckBase.cs" />
     <Compile Include="HealthCheckResult.cs" />
-    <Compile Include="Helpers\TaskExtensions.cs" />
+    <Compile Include="HealthCheck.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="IChecker.cs" />
     <Compile Include="IMetric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

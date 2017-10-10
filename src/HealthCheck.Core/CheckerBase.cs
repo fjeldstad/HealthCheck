@@ -1,24 +1,40 @@
 ﻿using System;
 using System.Threading.Tasks;
-using HealthCheck.Core.Helpers;
+using HealthCheck.Core.Extensions;
 
 namespace HealthCheck.Core
 {
     public abstract class CheckerBase : IChecker
     {
-        private TimeSpan? _timeout = TimeSpan.FromSeconds(5);
+        public string Name { get; set; }
+        public string SectionName { get; set; }
+        public virtual bool PreserveContext => false;
+        public virtual TimeSpan? Timeout { get; set; }
 
-        public abstract string Name { get; }
-        public TimeSpan? Timeout { get { return _timeout; } set { _timeout = value; } }
+        protected CheckerBase(string name, string sectionName) : this(name)
+        {
+            SectionName = sectionName;
+        }
+
+        protected CheckerBase(string name)
+        {
+            Name = name;
+        }
 
         protected CheckResult CreateResult(bool passed, string output)
         {
             return new CheckResult
             {
                 Checker = Name,
+                SectionName = SectionName,
                 Passed = passed,
                 Output = output
             };
+        }
+
+        protected Task<CheckResult> CreateTaskResult(bool passed, string output)
+        {
+            return Task.FromResult(CreateResult(passed, output));
         }
 
         public async Task<CheckResult> Check()

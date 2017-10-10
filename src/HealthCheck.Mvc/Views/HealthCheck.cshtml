@@ -1,0 +1,58 @@
+﻿@using HealthCheck.Mvc.Models
+@model HealthCheck.Core.HealthCheckResult
+@{
+    Layout = null;
+    var viewModel = new HealthCheckResultModel(Model);
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HealthCheck</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 10px
+            }
+            fieldset {
+                margin-bottom: 5px;
+            }
+            span, legend {
+                font-weight: bold;
+            }
+            h4 {
+                margin-left: 10px;
+            }
+            .failed {
+                color: red;
+            }
+            .passed {
+                color: green;
+            }
+            .questionable {
+                color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h4>[@viewModel.DateTimeString UTC] HealthCheck Overall Status: <span class="@(Model.Passed ? "passed" : "failed")">@Model.Output</span></h4>
+            <fieldset>
+                <legend>Summary</legend>
+                <p>Total checks: <span>@viewModel.Summary.TotalChecks</span></p>
+                <p>Passed checks: <span class="@(viewModel.Summary.PassedChecks != viewModel.Summary.TotalChecks ? viewModel.Summary.PassedChecks == 0 ? "failed" : "questionable" : "passed")">@viewModel.Summary.PassedChecks</span></p>
+                <p>Failed checks: <span class="@(viewModel.Summary.FailedChecks != viewModel.Summary.TotalChecks ? viewModel.Summary.FailedChecks == 0 ? "passed" : "questionable" : "failed")">@viewModel.Summary.FailedChecks</span></p>
+            </fieldset>
+            @foreach (var checkSection in viewModel.Sections)
+            {
+                <fieldset>
+                    <legend>@checkSection.Key</legend>
+                    @foreach (var check in checkSection.AsEnumerable())
+                    {
+                        <p>@check.Checker: <span class="@(check.Passed ? "passed" : "failed")">@check.Output.ToUpper()</span></p>
+                    }
+                </fieldset>
+            }
+        </div>
+    </body>
+</html>
