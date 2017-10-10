@@ -25,7 +25,7 @@ namespace HealthCheck.Core
                     {
                         try
                         {
-                            return !x.PreserveContext ? await x.Check().ConfigureAwait(false) : await x.Check();
+                            return await x.Check().ConfigureAwait(x.PreserveContext);
                         }
                         catch (Exception ex)
                         {
