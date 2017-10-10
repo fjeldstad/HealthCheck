@@ -9,7 +9,7 @@ namespace HealthCheck.Core
         public string Name { get; set; }
         public string SectionName { get; set; }
         public virtual bool PreserveContext => false;
-        public virtual TimeSpan? Timeout { private get; set; }
+        public virtual TimeSpan? Timeout { get; set; }
 
         protected CheckerBase(string name, string sectionName) : this(name)
         {

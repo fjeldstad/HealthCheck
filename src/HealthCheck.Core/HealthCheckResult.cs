@@ -10,7 +10,7 @@ namespace HealthCheck.Core
 
         public CheckResult[] Results => _results;
         public bool Passed => _passed;
-        public string Output => _passed ? "SUCCESS" : "FAILURE";
+        public string Output => _passed ? "success" : "failure";
 
         public HealthCheckResult(IEnumerable<CheckResult> results)
         {
