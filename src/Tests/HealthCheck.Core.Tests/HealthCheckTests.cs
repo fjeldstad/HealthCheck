@@ -92,8 +92,8 @@ namespace HealthCheck.Core.Tests
             Assert.That(result.Results.Length, Is.EqualTo(checkerMocks.Length));
             foreach (var checkerMock in checkerMocks)
             {
-                var checkResult = result.Results.Single(x => x.CheckerName == checkerMock.Object.Name);
-                Assert.That(checkResult.CheckerName, Is.EqualTo(checkerMock.Object.Name));
+                var checkResult = result.Results.Single(x => x.Checker == checkerMock.Object.Name);
+                Assert.That(checkResult.Checker, Is.EqualTo(checkerMock.Object.Name));
                 Assert.That(checkResult.Passed, Is.False);
                 Assert.That(checkResult.Output, Is.EqualTo("error " + checkerMock.Object.Name));
             }
@@ -169,7 +169,7 @@ namespace HealthCheck.Core.Tests
             Assert.That(result.Passed, Is.False);
             Assert.That(result.Output, Is.EqualTo("FAILURE"));
             Assert.That(result.Results, Is.Not.Null);
-            Assert.That(result.Results.Single().CheckerName, Is.EqualTo("HealthCheck"));
+            Assert.That(result.Results.Single().Checker, Is.EqualTo("HealthCheck"));
             Assert.That(result.Results.Single().Passed, Is.False);
             Assert.That(result.Results.Single().Output, Is.EqualTo(exception.Message));
         }

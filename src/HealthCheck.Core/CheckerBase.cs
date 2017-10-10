@@ -25,7 +25,7 @@ namespace HealthCheck.Core
         {
             return new CheckResult
             {
-                CheckerName = Name,
+                Checker = Name,
                 SectionName = SectionName,
                 Passed = passed,
                 Output = output

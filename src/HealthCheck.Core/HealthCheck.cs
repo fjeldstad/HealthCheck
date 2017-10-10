@@ -31,7 +31,7 @@ namespace HealthCheck.Core
                         {
                             return new CheckResult
                             {
-                                CheckerName = x.Name,
+                                Checker = x.Name,
                                 SectionName = x.SectionName,
                                 Passed = false,
                                 Output = ex.Message
@@ -46,7 +46,7 @@ namespace HealthCheck.Core
             {
                 return new HealthCheckResult(ex.Flatten().InnerExceptions.Select(innerEx => new CheckResult
                 {
-                    CheckerName = innerEx.TargetSite != null && !string.IsNullOrEmpty(innerEx.TargetSite.Name) ?
+                    Checker = innerEx.TargetSite != null && !string.IsNullOrEmpty(innerEx.TargetSite.Name) ?
                         innerEx.TargetSite.Name :
                         "HealthCheck",
                     Passed = false,
@@ -60,7 +60,7 @@ namespace HealthCheck.Core
                 {
                     new CheckResult
                     {
-                        CheckerName = "HealthCheck",
+                        Checker = "HealthCheck",
                         Passed = false,
                         Output = ex.Message
                     }

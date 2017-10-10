@@ -14,7 +14,7 @@ namespace HealthCheck.Core
 
         public HealthCheckResult(IEnumerable<CheckResult> results)
         {
-            _results = results.OrderBy(x => x.CheckerName).ToArray();
+            _results = results.OrderBy(x => x.Checker).ToArray();
             _passed = _results.Any() && _results.All(x => x.Passed);
         }
     }

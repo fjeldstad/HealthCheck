@@ -47,7 +47,7 @@
                     <legend>@checkSection.Key</legend>
                     @foreach (var check in checkSection.AsEnumerable())
                     {
-                        <p>@check.CheckerName: <span class="@(check.Passed ? "passed" : "failed")">@check.Output.ToUpper()</span></p>
+                        <p>@check.Checker: <span class="@(check.Passed ? "passed" : "failed")">@check.Output.ToUpper()</span></p>
                     }
                 </fieldset>
             }
