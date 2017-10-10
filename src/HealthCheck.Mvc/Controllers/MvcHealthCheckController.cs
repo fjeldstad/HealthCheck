@@ -27,8 +27,7 @@ namespace HealthCheck.Mvc.Controllers
 
         public ActionResult RunCompleted(HealthCheckResult result)
         {            
-            var model = new HealthCheckResultModel(result);
-            return View("~/Views/HealthCheck.cshtml", model);
+            return View("~/Views/HealthCheck.cshtml", result);
         }
     }
 }

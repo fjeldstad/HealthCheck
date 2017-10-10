@@ -1,6 +1,8 @@
-﻿@model HealthCheck.Mvc.Models.HealthCheckResultModel
+﻿@using HealthCheck.Mvc.Models
+@model HealthCheck.Core.HealthCheckResult
 @{
     Layout = null;
+    var viewModel = new HealthCheckResultModel(Model);
 }
 
 <!DOCTYPE html>
@@ -34,14 +36,14 @@
     </head>
     <body>
         <div>
-            <h4>[@Model.DateTimeString UTC] HealthCheck Overall Status: <span class="@(Model.Passed ? "passed" : "failed")">@Model.Output</span></h4>
+            <h4>[@viewModel.DateTimeString UTC] HealthCheck Overall Status: <span class="@(Model.Passed ? "passed" : "failed")">@Model.Output</span></h4>
             <fieldset>
                 <legend>Summary</legend>
-                <p>Total checks: <span>@Model.Summary.TotalChecks</span></p>
-                <p>Passed checks: <span class="@(Model.Summary.PassedChecks != Model.Summary.TotalChecks ? Model.Summary.PassedChecks == 0 ? "failed" : "questionable" : "passed")">@Model.Summary.PassedChecks</span></p>
-                <p>Failed checks: <span class="@(Model.Summary.FailedChecks != Model.Summary.TotalChecks ? Model.Summary.FailedChecks == 0 ? "passed" : "questionable" : "failed")">@Model.Summary.FailedChecks</span></p>
+                <p>Total checks: <span>@viewModel.Summary.TotalChecks</span></p>
+                <p>Passed checks: <span class="@(viewModel.Summary.PassedChecks != viewModel.Summary.TotalChecks ? viewModel.Summary.PassedChecks == 0 ? "failed" : "questionable" : "passed")">@viewModel.Summary.PassedChecks</span></p>
+                <p>Failed checks: <span class="@(viewModel.Summary.FailedChecks != viewModel.Summary.TotalChecks ? viewModel.Summary.FailedChecks == 0 ? "passed" : "questionable" : "failed")">@viewModel.Summary.FailedChecks</span></p>
             </fieldset>
-            @foreach (var checkSection in Model.Sections)
+            @foreach (var checkSection in viewModel.Sections)
             {
                 <fieldset>
                     <legend>@checkSection.Key</legend>
